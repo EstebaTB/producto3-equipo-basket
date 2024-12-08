@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useState } from "react";
 import {
-  View,
-  Text,
   Image,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
   Modal,
-  Button,
-} from 'react-native';
-import StarRating from './starrating';
-import { IPlayer } from '../../../interface/IPlayer';
-import { useRouter, useLocalSearchParams } from "expo-router";
-
-
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { IPlayer } from "../../../interface/IPlayer";
+import StarRating from "./starrating";
 
 export default function PlayerDetailsScreen(): React.JSX.Element {
   const router = useRouter();
@@ -189,17 +186,17 @@ export default function PlayerDetailsScreen(): React.JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: "#f4f4f4",
     paddingHorizontal: 10,
-    margin:20,
+    margin: 20,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#f0bc94',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f0bc94",
     borderRadius: 10,
     marginVertical: 10,
-    shadowColor: '#785c4c',
+    shadowColor: "#785c4c",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -209,49 +206,49 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 10,
-    margin:20,
-    resizeMode:'contain'
+    margin: 20,
+    resizeMode: "contain",
   },
   headerInfo: {
     flex: 1,
   },
   name: {
     fontSize: 30,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
   },
   position: {
     fontSize: 30,
-    color: '#333',
+    color: "#333",
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalImage: {
-    width: '90%',
-    height: '70%',
-    resizeMode: 'contain',
+    width: "90%",
+    height: "70%",
+    resizeMode: "contain",
   },
   modalClose: {
-    position: 'absolute',
+    position: "absolute",
     top: 40,
     right: 20,
     zIndex: 1,
   },
   closeText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   card: {
-    backgroundColor: '#f0bc94',
+    backgroundColor: "#f0bc94",
     padding: 15,
     borderRadius: 10,
     marginVertical: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -259,17 +256,17 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
-    color: '#555',
+    color: "#555",
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: "#eee",
     paddingBottom: 5,
   },
   infoText: {
     fontSize: 18,
     marginVertical: 2,
-    color: '#444',
+    color: "#444",
   },
   mediaButton: {
     marginTop: 20,
@@ -283,5 +280,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  
 });

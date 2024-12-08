@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { Video } from "expo-av";
+import { useLocalSearchParams } from "expo-router";
+import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
   Dimensions,
+  FlatList,
   Modal,
   Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { Video } from "expo-av";
 import { WebView } from "react-native-webview"; // Para Android/iOS
 import { IPlayer } from "../../../interface/IPlayer";
-import { useLocalSearchParams } from "expo-router";
 
 const MediaScreen = () => {
   const params = useLocalSearchParams();
@@ -89,7 +89,10 @@ const MediaScreen = () => {
         transparent={false}
       >
         <View
-          style={[styles.modalContainer, { width: screenWidth, height: screenHeight }]}
+          style={[
+            styles.modalContainer,
+            { width: screenWidth, height: screenHeight },
+          ]}
         >
           <TouchableOpacity
             style={styles.closeButton}
@@ -121,11 +124,13 @@ const MediaScreen = () => {
                 )
               ) : isMP4Video(selectedVideo) ? (
                 <Video
-                  source={{ uri: `https://jlgjgh-4200.csb.app/${selectedVideo}` }}
+                  source={{
+                    uri: `https://jlgjgh-4200.csb.app/${selectedVideo}`,
+                  }}
                   style={{ width: screenWidth, height: screenHeight }}
                   rate={1.0}
                   volume={1.0}
-                  useNativeControls 
+                  useNativeControls
                   resizeMode="contain"
                   paused={!isPlaying}
                   onEnd={() => setIsPlaying(false)}

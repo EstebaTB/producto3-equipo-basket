@@ -1,6 +1,6 @@
-import { Stack } from "expo-router";
-import { Image, TouchableOpacity, Text } from "react-native";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function RootLayout() {
   const router = useRouter();
@@ -12,10 +12,11 @@ export default function RootLayout() {
   // Botón de Inicio
   const HomeButton = () => (
     <TouchableOpacity
-      style={{ marginRight: 15 }}
+      style={styles.homeButton}
       onPress={() => router.push("/")}
     >
-      <Text style={{ color: "white", fontSize: 16 }}>Inicio</Text>
+      <FontAwesome name="home" size={20} color="#fff" />
+      <Text style={{ color: "white", fontSize: 16 }}></Text>
     </TouchableOpacity>
   );
 
@@ -48,9 +49,25 @@ export default function RootLayout() {
       {/* Pantalla de Detalles del Jugador */}
       <Stack.Screen
         name="components/details/playerDetails"
-        options={{
-          headerRight: () => <HomeButton />,
-        }}
+        options={({ route }) => ({
+          headerRight: () => (
+            <>
+              <TouchableOpacity
+                style={styles.mediaButton}
+                onPress={() =>
+                  router.push({
+                    pathname: "/components/media/media",
+                    params: { player: route.params.player }, // Pasa directamente el objeto player
+                  })
+                }
+              >
+                <FontAwesome name="video-camera" size={20} color="#fff" />
+                <Text style={{ color: "white", fontSize: 16 }}></Text>
+              </TouchableOpacity>
+              <HomeButton />
+            </>
+          ),
+        })}
       />
 
       {/* Pantalla Multimedia */}
@@ -63,3 +80,23 @@ export default function RootLayout() {
     </Stack>
   );
 }
+const styles = StyleSheet.create({
+  homeButton: {
+    flexDirection: "row", // Alinea horizontalmente
+    alignItems: "center", // Centra verticalmente
+    justifyContent: "center", // Centra horizontalmente
+    marginRight: 15,
+  },
+  mediaButton: {
+    flexDirection: "row", // Alinea horizontalmente
+    alignItems: "center", // Centra verticalmente
+    justifyContent: "center", // Centra horizontalmente
+    marginRight: 15,
+  },
+  mediaButtonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginLeft: 5, // Espacio entre el ícono y el texto
+  },
+});
