@@ -1,14 +1,29 @@
 import { Stack } from "expo-router";
-import { Image } from "react-native";
+import { Image, TouchableOpacity, Text } from "react-native";
+import { useRouter } from "expo-router";
 
 export default function RootLayout() {
+  const router = useRouter();
+
   const backgroundStyle = {
     backgroundColor: "rgb(35, 56, 83)",
   };
+
+  // Botón de Inicio
+  const HomeButton = () => (
+    <TouchableOpacity
+      style={{ marginRight: 15 }}
+      onPress={() => router.push("/")}
+    >
+      <Text style={{ color: "white", fontSize: 16 }}>Inicio</Text>
+    </TouchableOpacity>
+  );
+
+  // Logo Estático
   const Logo = () => (
     <Image
       source={require("./../assets/images/logo.png")}
-      style={{ width: 30, height: 30 }} // Ajusta el tamaño según necesites
+      style={{ width: 30, height: 30 }}
     />
   );
 
@@ -22,9 +37,29 @@ export default function RootLayout() {
         title: "Dribble Teach",
       }}
     >
-      <Stack.Screen name="index" options={{ headerLeft: () => <Logo /> }} />
-      <Stack.Screen name="components/details/playerDetails" />
+      {/* Pantalla Principal */}
+      <Stack.Screen
+        name="index"
+        options={{
+          headerLeft: () => <Logo />,
+        }}
+      />
+
+      {/* Pantalla de Detalles del Jugador */}
+      <Stack.Screen
+        name="components/details/playerDetails"
+        options={{
+          headerRight: () => <HomeButton />,
+        }}
+      />
+
+      {/* Pantalla Multimedia */}
+      <Stack.Screen
+        name="components/media/media"
+        options={{
+          headerRight: () => <HomeButton />,
+        }}
+      />
     </Stack>
   );
 }
-

@@ -11,11 +11,12 @@ import {
 } from 'react-native';
 import StarRating from './starrating';
 import { IPlayer } from '../../../interface/IPlayer';
-import { useLocalSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 
 
 
 export default function PlayerDetailsScreen(): React.JSX.Element {
+  const router = useRouter();
   const params = useLocalSearchParams();
   const player = JSON.parse(params.player as string) as IPlayer;
   const [isModalVisible, setModalVisible] = useState(false);
@@ -49,6 +50,18 @@ export default function PlayerDetailsScreen(): React.JSX.Element {
           <Text style={styles.position}>
             {player.position} #{player.jerseyNumber}
           </Text>
+          {/* Botón para Navegar a Media */}
+          <TouchableOpacity
+            style={styles.mediaButton}
+            onPress={() =>
+              router.push({
+                pathname: "/components/media/media",
+                params: { player: JSON.stringify(player) },
+              })
+            }
+          >
+            <Text style={styles.mediaButtonText}>Ver Videos</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -257,6 +270,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 2,
     color: '#444',
+  },
+  mediaButton: {
+    marginTop: 20,
+    backgroundColor: "#007AFF",
+    padding: 15,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  mediaButtonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
   },
   
 });
