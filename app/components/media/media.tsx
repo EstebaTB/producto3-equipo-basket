@@ -9,7 +9,7 @@ import {
   Modal,
   Platform,
 } from "react-native";
-import { Video } from 'expo-av';
+import { Video } from "expo-av";
 import { WebView } from "react-native-webview"; // Para Android/iOS
 import { IPlayer } from "../../../interface/IPlayer";
 import { useLocalSearchParams } from "expo-router";
@@ -125,7 +125,7 @@ const MediaScreen = () => {
                   style={{ width: screenWidth, height: screenHeight }}
                   rate={1.0}
                   volume={1.0}
-                  useNativeControls
+                  useNativeControls 
                   resizeMode="contain"
                   paused={!isPlaying}
                   onEnd={() => setIsPlaying(false)}
